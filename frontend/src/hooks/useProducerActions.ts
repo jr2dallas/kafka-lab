@@ -10,7 +10,7 @@ export function useAddMessages() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (payload: { count: number; payloadSizeBytes?: number }) => {
+    mutationFn: async (payload: { count: number; payloadSizeBytes: number }) => {
       await producerApi.createProducerGeneration({
         producerGenerationRequest: payload
       });

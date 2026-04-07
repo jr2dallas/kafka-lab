@@ -1,16 +1,17 @@
 import { execSync } from 'node:child_process';
 import { existsSync, cpSync, mkdirSync } from 'node:fs';
+import { resolve, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const backendSpec = '../backend/src/main/resources/api.yml';
-const fallbackSpec = '../backend/src/main/resources/api.yaml';
-const source = existsSync(backendSpec) ? backendSpec : fallbackSpec;
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const backendSpec = resolve(__dirname, '../../backend/src/main/resources/api.yaml');
 
-if (!existsSync(source)) {
-  throw new Error('OpenAPI contract not found. Expected ../backend/src/main/resources/api.yml or api.yaml');
+if (!existsSync(backendSpec)) {
+    throw new Error(`OpenAPI contract not found at ${backendSpec}`);
 }
 
 mkdirSync('./openapi', { recursive: true });
-cpSync(source, './openapi/api.yaml');
+cpSync(backendSpec, './openapi/api.yaml');
 
 execSync(
   [

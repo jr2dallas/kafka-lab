@@ -47,7 +47,6 @@ export function ProducerCard({ data }: ProducerCardProps) {
       <div className="stats-grid">
         <Stat label="Target" value={formatNumber(data?.producer.targetCount)} />
         <Stat label="Produced" value={formatNumber(data?.producer.producedCount)} />
-        <Stat label="Payload" value={formatNumber(data?.producer.payloadSizeBytes)} />
       </div>
     </Card>
   );
