@@ -46,18 +46,12 @@ Built as a portfolio project to demonstrate distributed systems knowledge with K
 ### Run with Docker
 
 ```bash
-# Clone
 git clone https://github.com/jr2dallas/kafka-lab.git
 cd kafka-lab
-
-# Build backend JAR
-cd backend && mvn clean package -DskipTests && cd ..
-
-# Start everything
 docker compose up --build
 ```
 
-Open [http://localhost:5173](http://localhost:5173)
+Open [http://localhost](http://localhost)
 
 ### Local dev
 
@@ -72,6 +66,8 @@ cd backend && mvn spring-boot:run
 cd frontend && npm install && npm run dev
 ```
 
+Open [http://localhost:5173](http://localhost:5173)
+
 ## Architecture
 
 kafka-lab/\
@@ -84,16 +80,15 @@ kafka-lab/\
 [React Dashboard]\
 │ POST /api/producer/generations\
 │ POST /api/consumer/pause|resume\
-│ GET /api/dashboard/status ← polled every 500ms\
+│ GET /api/dashboard/status
 
 [Spring Boot Backend]\
 │ produce messages\
-│ consume messages\
+│ consume messages
 
 [Apache Kafka (KRaft)]\
 kafka-lab-topic (1 partition)\
-kafka-lab-group (1 consumer)\
-
+kafka-lab-group (1 consumer)
 
 ## API
 
@@ -103,7 +98,6 @@ kafka-lab-group (1 consumer)\
 | POST   | `/api/producer/generations` | Start a production job   |
 | POST   | `/api/consumer/pause`       | Pause the consumer       |
 | POST   | `/api/consumer/resume`      | Resume the consumer      |
-
 
 ## License
 
